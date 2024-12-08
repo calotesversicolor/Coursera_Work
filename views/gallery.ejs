@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Pinterest</title>
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .grid-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .add-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px dashed #ffffff;
+            border-radius: 5px;
+            height: 200px;
+            cursor: pointer;
+            background-color: #1e1e1e;
+        }
+        .add-image img {
+            width: 50px;
+            height: 50px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #1e1e1e;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+        .delete-button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <%- include("header") %>
+
+    <main class="container mt-0">
+        <div class="grid">
+            <% if (user && user.role == "admin") { %>
+                <div class="grid-item add-image">
+                    <a class="nav-link text-light" href="/new_image">Добавить картинку</a>
+                </div>
+            <% } %>
+            <% data.forEach(item => { %>
+                <div class="grid-item">
+                    <img src="<%= item.path %>" alt="<%= item.category %>">
+                    <% if (user && user.role == "admin") { %>
+                        <div class="delete-button-container">
+                            <form action="/delete_image/<%= item.id %>" method="POST">
+                                <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                            </form>
+                        </div>
+                    <% } %>
+                </div>
+            <% }); %>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 Мой Pinterest</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание новой картинки</title>
+    <style>
+        body {
+            background-color: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            background-color: #1e1e1e;
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .form-control {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+            box-sizing: border-box; /* Учитываем отступы и границы в ширине */
+        }
+        .form-control:focus {
+            background-color: #5a6268;
+            outline: none;
+        }
+        .btn {
+            background-color: #E60023;
+            border: none;
+            border-radius: 4px;
+            color: #ffffff;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #C7001D;
+        }
+        .hint {
+            font-size: 12px;
+            color: #cccccc;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Создание новой картинки</h1>
+        <form id="imageForm" action="/add_image" method="POST">
+            <label class="form-label" for="imagePath">Путь к картинке:</label>
+            <input class="form-control" type="text" id="imagePath" name="path" required>
+            <div class="hint">Путь указывается из папки <strong>public</strong></div>
+
+            <label class="form-label" for="category">Категория:</label>
+            <select class="form-control" id="category" name="category" required>
+                <option value="animals">Животные</option>
+                <option value="sport">Спорт</option>
+                <option value="sky">Небо</option>
+                <option value="cars">Автомобили</option>
+            </select>
+
+            <button class="btn" type="submit">Создать картинку</button>
+        </form>
+    </div>
+</body>
+</html>

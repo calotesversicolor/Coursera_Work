@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+        }
+        .card {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        .welcome-message {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .btn-danger {
+            width: 100%;
+            background-color: #ff4d4d;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn-danger:hover {
+            background-color: #ff1a1a;
+        }
+        .form-select {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+        }
+        .form-select option {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+        h2 {
+            border-bottom: 2px solid #ff4d4d;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <%- include("header") %>
+    
+    <div class="container mt-5">
+        <div class="welcome-message">
+            <h2>Добро пожаловать, <%= user.name %>!</h2>
+            <p>Это ваш личный кабинет, где вы можете управлять своими данными и настройками.</p>
+        </div>
+
+        <h2>Информация о пользователе</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Имя</h5>
+                        <p class="card-text"><%= user.name %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Email</h5>
+                        <p class="card-text"><%= user.email %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Любимая категория</h5>
+                        <select class="form-select" id="categorySelector" aria-label="Выберите категорию">
+                            <option value="animals" <%= favorite_category === 'animals' ? 'selected' : '' %>>Животные</option>
+                            <option value="cars" <%= favorite_category === 'cars' ? 'selected' : '' %>>Автомобили</option>
+                            <option value="sky" <%= favorite_category === 'sky' ? 'selected' : '' %>>Небо</option>
+                            <option value="sport" <%= favorite_category === 'sport' ? 'selected' : '' %>>Спорт</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form class="mt-4" id="signoutForm" action="/signout" method="POST">
+            <button type="submit" class="btn btn-danger">Выйти</button>
+        </form>
+    </div>
+</body>
+</html>

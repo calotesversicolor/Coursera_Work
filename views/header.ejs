@@ -1,0 +1,25 @@
+<header class="bg-dark shadow-sm mb-4">
+    <div class="container">
+        <h1 class="text-center text-danger my-3">Мой Pinterest</h1>
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/">Главная</a>
+                </li>
+                <% if (!user) { %>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/authorization">Вход</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/registration">Регистрация</a>
+                    </li>
+                <% } %>
+                <% if (user) { %>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/account">Личный кабинет</a>
+                    </li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+</header>

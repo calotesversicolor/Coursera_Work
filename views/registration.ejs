@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css">
+    <title>Мой Pinterest</title>
+    <style>
+        body {
+            background-color: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #ffffff;
+        }
+        .registration-container {
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            background-color: #1e1e1e;
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            color: #E60023;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .form-control {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border: none;
+        }
+        .form-control:focus {
+            background-color: #5a6268;
+            color: #ffffff;
+            box-shadow: none;
+        }
+        .form-select {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border: none;
+        }
+        .form-select:focus {
+            background-color: #5a6268;
+            color: #ffffff;
+            box-shadow: none;
+        }
+        .btn {
+            background-color: #E60023;
+            border: none;
+            color: #ffffff;
+        }
+        .btn:hover {
+            background-color: #C7001D;
+        }
+    </style>
+</head>
+<body>
+    <%- include("header") %>
+
+    <div class="registration-container">
+        <h2 class="text-center">Регистрация</h2>
+        <form id="registrationForm" action="/signup" method="POST">
+            <div class="mb-3">
+                <label for="regName" class="form-label">Имя & Фамилия</label>
+                <input type="text" class="form-control" id="regName" name="userName" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="regEmail" class="form-label">Электронная почта</label>
+                <input type="email" class="form-control" id="regEmail" name="userEmail" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="regPassword" class="form-label">Пароль</label>
+                <input type="password" class="form-control" id="regPassword" name="userPassword" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="regRole" class="form-label">Роль</label>
+                <select class="form-select" id="regRole" name="userRole" required>
+                    <option value="user" selected>Пользователь</option>
+                    <option value="admin">Администратор</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="regFavoriteCategory" class="form-label">Любимая категория</label>
+                <select class="form-select" id="regFavoriteCategory" name="userFavoriteCategory" required>
+                    <option value="" disabled selected>Выберите категорию</option>
+                    <option value="animals">Животные</option>
+                    <option value="sport">Спорт</option>
+                    <option value="sky">Небо</option>
+                    <option value="cars">Автомобили</option>
+                </select>
+            </div>            
+
+            <button type="submit" class="btn w-100">Зарегистрироваться</button>
+        </form>
+    </div>
+</body>
+</html>
